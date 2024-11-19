@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="./static/site/img/favicon.ico">
+
+  <title>5 Stage Clos Network Diagram</title>
+
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-size: 1.4em;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      margin-top: 8px;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .wrapper {
+      display: grid;
+      column-gap: 8px;
+      row-gap: 8px;
+      grid-template-columns: 1fr;
+    }
+
+    /*
+    1-2
+     ■
+    2--
+     □
+    3--
+    */
+    .header_panel {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+      height: 30px;
+      /* disable select text */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /*
+    1-2
+     □
+    2--
+     ■
+    3--
+    */
+    .main_panel {
+      grid-row: 2 / 3;
+      grid-column: 1 / 2;
+      position: relative;
+      /*
+      body-top-margin = 8px
+      top-panel-height = 30px
+      row-gap = 8px
+      border = 1px + 1px = 2px
+      */
+      height: calc(100vh - 8px - 30px - 8px - 2px);
+      overflow: hidden;
+      border: 1px solid #aaa;
+    }
+
+    .control_span {
+      display: inline-block;
+      font-size: 14px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 4px;
+    }
+
+    .control_span a {
+      color: #000;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      background: #e2e2e2;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .control_span a:hover {
+      text-decoration: underline;
+    }
+
+    .control_span a.active {
+      color: #fff;
+      background: #000;
+    }
+
+    /* ハンバーガーメニュー ここから */
+    :root {
+      --menu-label-z: 999;
+      --menu-content-z: 998;
+    }
+
+    #menu-checkbox {
+      display: none;
+    }
+
+    #menu-checkbox:checked~.menu-label span {
+      background-color: rgba(255, 255, 255, 0);
+    }
+
+    #menu-checkbox:checked~.menu-label span::before {
+      bottom: 0;
+      transform: rotate(45deg);
+    }
+
+    #menu-checkbox:checked~.menu-label span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    #menu-checkbox:checked~.menu-content {
+      left: 0;
+    }
+
+    .menu-label {
+      position: fixed;
+      display: flex;
+      width: 45px;
+      height: 32px;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      background-color: grey;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      z-index: var(--menu-label-z, 999);
+    }
+
+    .menu-label span,
+    .menu-label span:before,
+    .menu-label span:after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 25px;
+      height: 3px;
+      border-radius: 3px;
+      background-color: #ffffff;
+      transition: all 0.5s;
+    }
+
+    .menu-label span:before {
+      bottom: 8px;
+    }
+
+    .menu-label span:after {
+      top: 8px;
+    }
+
+    /* 表示するメニューのDIV */
+    /* 通常時はメニューのleftを-100%にして画面の外に配置する */
+    /* z-indexはチェックボックスよりも小さくすれば数字自体はいくつでもよい */
+    .menu-content {
+      width: 40%;
+      height: 100%;
+      position: fixed;
+      top: 46px;
+      left: -100%;
+      z-index: var(--menu-content-z, 998);
+      background-color: gray;
+      transition: all 0.5s;
+    }
+
+    .menu-content ul {
+      padding: 70px 10px 0;
+    }
+
+    .menu-content ul li {
+      /* border-bottom: solid 1px #ffffff; */
+      list-style: none;
+    }
+
+    .menu-content ul li a {
+      display: block;
+      width: 100%;
+      font-size: 15px;
+      box-sizing: border-box;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 9px 15px 10px 0;
+      position: relative;
+    }
+
+    /* ハンバーガーメニュー　ここまで */
+
+    #threejsContainer {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+    }
+
+    #statsjsContainer {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+      z-index: 990;
+    }
+
+    #guiContainer {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+    }
+
+    #infoContainer {
+      position: absolute;
+      top: 0px;
+      left: 100px;
+      margin: 0px;
+      padding: 0px;
+      background-color: #ffffe0;
+      color: #333;
+    }
+
+
+    .label {
+      text-shadow: -1px 1px 1px rgb(0, 0, 0);
+      background-color: 'transparent';
+      color: #fff;
+      margin-left: 24px;
+      font-size: 14px;
+    }
+
+    .label.small {
+      font-size: 10px;
+    }
+
+    .label.medium {
+      font-size: 14px;
+    }
+
+    .label.large {
+      font-size: 20px;
+    }
+
+  </style>
+
+  <!-- CCapture.js -->
+  <!-- <script src="./static/libs/ccapture.js-1.0.9/CCapture.all.min.js"></script> -->
+
+</head>
+
+
+<body>
+  <div class="wrapper">
+
+    <div class="header_panel">
+
+      <!-- 左ハンバーガーメニュー JavaScriptなし チェックボックス型 -->
+      <span>
+        <input type="checkbox" id="menu-checkbox">
+        <label for="menu-checkbox" class="menu-label"><span></span></label>
+        <!-- メニュー ここから -->
+        <div class="menu-content">
+          <ul>
+            <li>
+              <a href="https://github.com/takamitsu-iida/threejs-practice" target="_blank" rel="noopener noreferrer">source code</a>
+            </li>
+          </ul>
+        </div>
+        <!-- メニュー ここまで -->
+      </span>
+
+      <span class="control_span" style="margin-left: 50px;">
+        (clusters, routers/cluster)&nbsp;
+        <a id="idData1" name="dataChangeMenu" class="active">(10, 20)</a>
+        <a id="idData2" name="dataChangeMenu">(20, 30)</a>
+        <a id="idData3" name="dataChangeMenu">(30, 30)</a>
+      </span>
+
+      <span class="control_span" style="margin-left: 10px;">
+        Layout &nbsp;
+        <a id="idLayout1" name="layoutChangeMenu" class="active">Circular</a>
+        <a id="idLayout2" name="layoutChangeMenu">Sphere</a>
+        <a id="idLayout3" name="layoutChangeMenu">Grid</a>
+      </span>
+
+      <!-- テスト用
+      <span><button id="idButton1">グラフ消去</button></span>
+      -->
+
+      <!--
+      <span style="float: right">
+        <a href="https://github.com/takamitsu-iida/threejs-practice" target="_blank" rel="noopener noreferrer">source code</a> (github)
+      </span>
+      -->
+
+    </div>
+
+    <div class="main_panel">
+
+      <div id="threejsContainer"></div>
+      <div id="statsjsContainer"></div>
+      <div id="guiContainer"></div>
+      <div id="infoContainer"></div>
+
+      <div id="layout">
+        <button id="buttonCircular">Circular</button>
+        <button id="buttonSphere">Sphere</button>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+<!-- three.js -->
+<script type="importmap">
+  {
+    "imports": {
+      "three": "./static/build/three.module.js",
+      "three/libs/": "./static/libs/",
+      "three/controls/": "./static/controls/"
+    }
+  }
+</script>
+
+<script type="module">
+  import WebGL from './static/libs/capabilities/WebGL.js';
+  import { Diagram, createSampleGraph } from "./static/site/js/nwdiagram.js";
+
+  window.addEventListener("load", () => {
+    if (WebGL.isWebGL2Available()) {
+      const graph = createSampleGraph();
+      new Diagram({
+        graph: graph,
+        selection: false, // Default: true
+        showLabels: false, // Default: true
+        labelFontSize: "Small", // Small, Medium, Large, Default: Medium
+        axesHelper: false, // Default: true
+        autoRotate: false // Default: false
+      });
+    } else {
+      document.getElementById("threejsContainer").appendChild(WebGL.getWebGLErrorMessage());
+    }
+  });
+</script>
+
+</html>
