@@ -4,12 +4,14 @@
 
 （このページはシンクライアント端末ではなくFAT PCで御覧ください）
 
-<br>
+<br><br>
 
 データセンターにおける大規模ネットワークのルーティング技術を調べる機会がありまして、
 ベンダー独自の製品・機能について調べつつ、オープンな技術についても調査をしておりました。
 
 この分野で調べを進めていきますと必然的に [RFC7938 Use of BGP for Routing in Large-Scale Data Centers](https://datatracker.ietf.org/doc/html/rfc7938) を読むことになるのですが、その中に書かれている図がこれ（↓）です。
+
+<br>
 
 ```
                                       Tier 1
@@ -39,6 +41,8 @@
 
                       Figure 3: 5-Stage Clos Topology
 ```
+
+<br>
 
 テキストで表現した構成図としてはものすごく分かりやすいと思うのですが、
 パッと見ただけでは **何がどう繋がっているのか、分かりづらい** です。
@@ -142,31 +146,33 @@ Three.jsを使うとGPUを意識することなく3Dプログラミングでき�
 
 **もっとPCを温めたい**、という方のためにGPUを使った作例を２つ紹介します。
 
-<br>
-
-## 線の位置をGPUで計算して描画する例
-
-地球儀上の都市間を結ぶ曲線をランダムに描画します。
-
-フレームごとに線の位置をGPUで計算して動かしています。
-
-GeoIPなんかと組み合わせるとおもしろい表現ができるかも、と思って作りました。
-
-[![ScreenImage](./asset/index-load-geojson4.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
-
-[Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
-
-<br>
+<br><br>
 
 ## 風の動きをGPUで計算して描画する例
 
 5万個のパーティクル（点）を風のベクトルに沿って動かしています。
 
-JavaScript単独でパーティクルの位置計算をすると、せいぜい数千個のパーティクルを動かすのが限界ですが、GPUを使って位置を計算することで二桁くらい性能があがります。
+JavaScriptだけでパーティクルの位置計算をすると、せいぜい数千個のパーティクルを動かすのが限界ですが、GPUを使って位置計算することで2桁くらい性能があがります。
 
-私は手漕ぎボートで海に浮かんで釣りをするのが趣味なので、
-分かりやすい風予報の可視化ができないかな、と思って作りました。
+私は手漕ぎボートで海に浮かんで釣りをするのが趣味なので、週末が近づくと風予報が気になって仕方ありません。
+自分でも分かりやすい風予報の可視化ができないかな、と思って作りました。
+
+Windyほど美しくはできなかったのですが、パーティクルの位置をGPUで計算する方法は応用範囲が広く、実装してみて本当に勉強になりました。
 
 [![ScreenImage](./asset/index-gpgpu-move-along-wind5.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html)
 
 [Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html)
+
+<br><br>
+
+## 線の位置をGPUで計算して描画する例
+
+地球儀上の都市間を結ぶ曲線をランダムに描画します。
+
+フレームごとに線の位置をGPUで計算して動かしているわけですが、基本的なやり方は前述の風の可視化と同じです。
+
+IPアドレスと地図上の位置を紐づけるGeoIPなんかと組み合わせるとおもしろい可視化表現ができるかも、と思って作りました。
+
+[![ScreenImage](./asset/index-load-geojson4.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
+
+[Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
