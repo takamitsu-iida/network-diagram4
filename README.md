@@ -59,9 +59,9 @@
 
 それがこれ（↓）です（画像クリックでライブデモ）。
 
-[![ScreenImage](./asset/network-diagram3.png)](https://takamitsu-iida.github.io/network-diagram3/)
-
-[Live Demo](https://takamitsu-iida.github.io/network-diagram3/)
+| [![ScreenImage](./asset/network-diagram3.png)](https://takamitsu-iida.github.io/network-diagram3/) |
+| --- |
+| [Live Demo](https://takamitsu-iida.github.io/network-diagram3/) |
 
 画面左上の `Data1` をクリックして表示される構成は、Tier2-Tier3ルータで構成される単一クラスタです。
 
