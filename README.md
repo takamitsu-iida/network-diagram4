@@ -59,10 +59,13 @@
 
 それがこれ（↓）です（画像クリックでライブデモ）。
 
+<br>
+
 | [![ScreenImage](./asset/network-diagram3.png)](https://takamitsu-iida.github.io/network-diagram3/) |
 | --- |
 | [Live Demo](https://takamitsu-iida.github.io/network-diagram3/) |
 
+<br>
 
 画面左上の `Data1` をクリックして表示される構成は、Tier2-Tier3ルータで構成される単一クラスタです。
 
@@ -106,11 +109,11 @@
 
 <br>
 
-[![ScreenImage](./asset/index-nwdiagram.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html)
+| [![ScreenImage](./asset/index-nwdiagram.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html) |
+| --- |
+| [Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html) |
 
-[Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html)
-
-<br><br>
+<br>
 
 画面左上の　`(10, 20)`　`(20, 30)`　`(30, 30)`　をクリックして構成の規模を切り替えてみてください。
 
@@ -166,20 +169,24 @@ JavaScriptだけでパーティクルの位置を計算すると、せいぜい�
 Windyのように美しく表現するには美的センスが必要なので、残念ながら私にはできませんでしたが、
 GPUを使って計算するそのやり方は、いろんなところに応用できると思います。
 
-[![ScreenImage](./asset/index-gpgpu-move-along-wind5.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html)
+<br>
 
-[Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html)
+| [![ScreenImage](./asset/index-gpgpu-move-along-wind5.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html) |
+| --- |
+| [Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-gpgpu-move-along-wind5.html) |
 
-<br><br>
+<br><br><br>
 
 ## 線の位置をGPUで計算して描画する例
 
 地球儀上の都市間を結ぶ曲線をランダムに描画しています。
 
-基本的なやり方は前述の風の可視化と同じで、約5万個の点の位置をフレームごとにGPUで計算しています（ワイヤーフレーム表示にすることで線に見せかけてるだけで、実際には線すら書いてません）。
+基本的なやり方は前述の風の可視化と同じで、約5万個の点の位置をフレームごとにGPUで計算しています（ワイヤーフレームにすることで線を表示しているだけで、実際には線すら書いてません）。
 
 IPアドレスと地図上の位置を紐づけるGeoIPと組み合わせたらおもしろい可視化表現ができるかも、と思って作りましたが、思ったほど美しくなかったので放置しています。
 
-[![ScreenImage](./asset/index-load-geojson4.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
+<br>
 
-[Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html)
+| [![ScreenImage](./asset/index-load-geojson4.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html) |
+| --- |
+| [Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-load-geojson4.html) |
