@@ -59,7 +59,6 @@
 
 それがこれ（↓）です（画像クリックでライブデモ）。
 
-| --- |
 | [![ScreenImage](./asset/network-diagram3.png)](https://takamitsu-iida.github.io/network-diagram3/) |
 | [Live Demo](https://takamitsu-iida.github.io/network-diagram3/) |
 
