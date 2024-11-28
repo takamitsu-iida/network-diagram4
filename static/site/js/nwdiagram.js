@@ -1524,7 +1524,7 @@ export class Diagram {
 
     // グラフのredundantIdの表示ON/OFFを切り替える
     {
-      const folder = gui.addFolder('Redundunt');
+      const folder = gui.addFolder(navigator.language.startsWith("ja") ? "冗長系" : "Redundant");
       folder
         .add(this.graphParams, 'redundant_0')
         .name(navigator.language.startsWith("ja") ? "0系を表示" : "show redundant 0")
