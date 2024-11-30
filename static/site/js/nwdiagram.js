@@ -45,7 +45,7 @@ export class ObjectSelection {
   // 光線を飛ばす対象レイヤ
   layers; // = [];
 
-  constructor(params={}) {
+  constructor(params = {}) {
     this.params = Object.assign(this.params, params);
 
     // マウスカーソルが上に乗ったときのコールバック関数
@@ -203,7 +203,7 @@ class __CanvasLabel {
   labelText;
   labelLayer;
 
-  constructor(params={}) {
+  constructor(params = {}) {
     this.params = Object.assign(this.params, params);
 
     this.labelName = this.params.hasOwnProperty("labelName") ? this.params.labelName : "";
@@ -461,7 +461,7 @@ export class FiveStageClosGraph {
   };
 
 
-  constructor(options={}) {
+  constructor(options = {}) {
     this.options = Object.assign(this.options, options);
 
     this.clusters = this.options.clusters;
@@ -1307,7 +1307,7 @@ export class Diagram {
   }
 
 
-  constructor(options={}) {
+  constructor(options = {}) {
     this.options = Object.assign(this.options, options);
 
     // optionsで渡された値に更新
@@ -1447,6 +1447,7 @@ export class Diagram {
   // lil-guiを初期化
   initGui = () => {
     let container = document.getElementById("guiContainer");
+
     if (!container) {
       container = document.createElement("div");
       container.id = "guiContainer";
@@ -1460,11 +1461,11 @@ export class Diagram {
 
     // ラベル表示のON/OFFを切り替える
     {
-      const folder = gui.addFolder('Label');
+      const folder = gui.addFolder(navigator.language.startsWith("ja") ? "ラベル設定" : "Label");
       folder
         .add(this.labelParams, 'showLabels')
         .name(navigator.language.startsWith("ja") ? "ラベルを表示" : "show node label")
-        .onChange((value) => {
+        .onFinishChange(() => {
           // レイヤでラベルを表示するかどうかを切り替える
           this.camera.layers.toggle(LAYERS.LABEL);
 
@@ -1478,7 +1479,7 @@ export class Diagram {
         .add(this.labelParams, 'labelFontSize')
         .options(['Small', 'Medium', 'Large'])
         .name(navigator.language.startsWith("ja") ? "フォントサイズ" : "font size")
-        .onChange((value) => {
+        .onFinishChange((value) => {
           // CSS2DObjectはDIVを元にしているので、CSSクラスを変更するだけでフォントサイズを変えられる
           document.querySelectorAll('.label').forEach((label) => {
             label.classList.remove('small', 'medium', 'large');
@@ -1493,7 +1494,7 @@ export class Diagram {
       folder
         .add(this, 'axesHelperEnabled')
         .name(navigator.language.startsWith("ja") ? "軸を表示" : "show AxesHelper")
-        .onChange((value) => {
+        .onFinishChange((value) => {
           this.axesHelper.visible = value;
         });
     }
@@ -1504,7 +1505,7 @@ export class Diagram {
       folder
         .add(this.orbitParams, 'autoRotate')
         .name(navigator.language.startsWith("ja") ? "回転" : "auto rotate")
-        .onChange((value) => {
+        .onFinishChange((value) => {
           this.controller.autoRotate = value;
           if (value) {
             // 回転中はマウス操作を無効にする
@@ -1528,13 +1529,13 @@ export class Diagram {
       folder
         .add(this.graphParams, 'redundant_0')
         .name(navigator.language.startsWith("ja") ? "0系を表示" : "show redundant 0")
-        .onChange(() => {
+        .onFinishChange(() => {
           this.camera.layers.toggle(LAYERS.REDUNDANT_0);
         });
       folder
         .add(this.graphParams, 'redundant_1')
         .name(navigator.language.startsWith("ja") ? "1系を表示" : "show redundant 1")
-        .onChange(() => {
+        .onFinishChange(() => {
           this.camera.layers.toggle(LAYERS.REDUNDANT_1);
         });
     }
