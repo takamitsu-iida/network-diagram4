@@ -117,9 +117,9 @@ Topicsに「AdventCalender2024」と「社内DX-SEデジタル革新」を付け
 
 <br>
 
-| [![ScreenImage](./asset/index-nwdiagram.html.png)](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html) |
+| [![ScreenImage](./asset/index-nwdiagram.html.png)](https://takamitsu-iida.github.io/network-diagram4/index.html) |
 | --- |
-| [Live Demo](https://takamitsu-iida.github.io/threejs-practice/index-nwdiagram.html) |
+| [Live Demo](https://takamitsu-iida.github.io/network-diagram4/index.html) |
 
 <br>
 
